@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
         List<Recipe> vara = recipeViewModel.loadJSONFromAsset(this);
-        mTextMessage.setText(vara);
+        mTextMessage.setText(vara.get(0).getName());
 
 
     }
