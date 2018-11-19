@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.MainActivity">
+
+
+    <TextView
+        android:id="@+id/tv_ingredients_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textAllCaps="true"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_ingredients_quanitty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textAllCaps="true"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_ingredients_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_ingredients_title" />
+
+    <TextView
+        android:id="@+id/tv_ingredients_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textAllCaps="true"
+        android:textColor="@color/secondaryText"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_ingredients_quanitty"
+        app:layout_constraintStart_toEndOf="@+id/tv_ingredients_quanitty"
+        app:layout_constraintTop_toTopOf="@+id/tv_ingredients_quanitty" />
+
+</android.support.constraint.ConstraintLayout>

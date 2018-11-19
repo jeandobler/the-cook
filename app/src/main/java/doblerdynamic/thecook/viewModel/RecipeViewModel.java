@@ -15,11 +15,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import doblerdynamic.thecook.model.Recipe;
+import doblerdynamic.thecook.model.Step;
 
 public class RecipeViewModel extends ViewModel {
 
     private List<Recipe> recipes = new ArrayList<>();
     private Recipe recipe;
+    private Step step;
+
+    public int getStepPosition() {
+        return stepPosition;
+    }
+
+    public void setStepPosition(int stepPosition) {
+        this.stepPosition = stepPosition;
+    }
+
+    private int stepPosition;
+
+    public Step getStep() {
+        return step;
+    }
+
+    public void setStep(Step step) {
+        this.step = step;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 
     public List<Recipe> loadJSONFromAsset(Context context) {
         String json = null;
@@ -60,7 +88,7 @@ public class RecipeViewModel extends ViewModel {
         }
 
     }
-    
+
     public Recipe getOne(Context context) {
         if (recipe != null) {
             return recipe;

@@ -11,49 +11,43 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_ingredients_title"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_step_id"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:text="title"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_ingredients_quanitty"
-                android:layout_width="wrap_content"
-                android:layout_height="23dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="4dp"
-                android:text="quant"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_ingredients_title" />
-
-            <TextView
-                android:id="@+id/tv_ingredients_measure"
+                android:id="@+id/tv_step_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:text="emaseure"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_ingredients_quanitty"
-                app:layout_constraintStart_toEndOf="@+id/tv_ingredients_quanitty"
-                app:layout_constraintTop_toTopOf="@+id/tv_ingredients_quanitty" />
+                app:layout_constraintStart_toEndOf="@+id/tv_step_id"
+                app:layout_constraintTop_toTopOf="@+id/tv_step_id" />
+
+            <ImageView
+                android:id="@+id/bt_step_go"
+                android:layout_width="75dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:src="@drawable/play"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_step_id" />
+
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>
