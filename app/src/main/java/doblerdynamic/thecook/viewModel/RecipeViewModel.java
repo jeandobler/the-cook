@@ -19,6 +19,7 @@ import doblerdynamic.thecook.model.Recipe;
 public class RecipeViewModel extends ViewModel {
 
     private List<Recipe> recipes = new ArrayList<>();
+    private Recipe recipe;
 
     public List<Recipe> loadJSONFromAsset(Context context) {
         String json = null;
@@ -48,6 +49,25 @@ public class RecipeViewModel extends ViewModel {
             e.printStackTrace();
         }
         return recipes;
+    }
+
+    public Recipe getOne(Context context, int headIndex) {
+        if (recipe != null) {
+            return recipe;
+        } else {
+            recipe = loadJSONFromAsset(context).get(headIndex);
+            return recipe;
+        }
+
+    }
+    
+    public Recipe getOne(Context context) {
+        if (recipe != null) {
+            return recipe;
+        } else {
+            return null;
+        }
+
     }
 
 

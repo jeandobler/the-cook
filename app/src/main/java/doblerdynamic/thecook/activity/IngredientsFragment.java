@@ -1,6 +1,8 @@
 package doblerdynamic.thecook.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -37,12 +39,14 @@ public class IngredientsFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ingredientAdapter.setIngredientData(mIngredientList);
+    }
 
     public void setIngredientsList(List<Ingredient> ingredientsList) {
-        Log.e("QUALVALOR", ingredientsList.toString());
-
-        ingredientAdapter.setIngredientData(ingredientsList);
-//        mIngredientList = ingredientsList;
+        mIngredientList = ingredientsList;
     }
 
 

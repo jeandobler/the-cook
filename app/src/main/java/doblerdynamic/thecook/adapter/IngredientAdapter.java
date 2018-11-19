@@ -1,7 +1,6 @@
 package doblerdynamic.thecook.adapter;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,11 +39,9 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     @Override
     public void onBindViewHolder(IngredientViewHolder holder, int position) {
-
-        Log.e("asdasdasd", mDataset.get(position).getIngredient().toString());
         holder.mTvTitle.setText(mDataset.get(position).getIngredient());
-
-
+        holder.mTvQuantity.setText(mDataset.get(position).getQuantity());
+        holder.mTvMeasure.setText(mDataset.get(position).getMeasure());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -60,14 +57,16 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
 
     public class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView mTvTitle;
+        TextView mTvContent;
+        TextView mTvQuantity;
+        TextView mTvMeasure;
 
         public IngredientViewHolder(View v) {
             super(v);
             mTvTitle = v.findViewById(R.id.tv_ingredients_title);
-//            mIvPoster = v.findViewById(R.id.iv_recipe_poster);
-//            mTvTitle = v.findViewById(R.id.tv_recipe_title);
+            mTvQuantity = v.findViewById(R.id.tv_ingredients_quanitty);
+            mTvMeasure = v.findViewById(R.id.tv_ingredients_measure);
         }
-
 
     }
 

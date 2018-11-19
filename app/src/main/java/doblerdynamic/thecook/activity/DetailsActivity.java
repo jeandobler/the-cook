@@ -22,11 +22,16 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        int headIndex = getIntent().getIntExtra("headIndex", 0);
+        int headIndex = getIntent().getIntExtra("headIndex", -1);
         recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
-        mRecipes = recipeViewModel.loadJSONFromAsset(this);
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
+
+        if (headIndex == -1) {
+            ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this).getIngredients());
+        } else {
+            ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this, headIndex).getIngredients());
+        }
 
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -34,8 +39,6 @@ public class DetailsActivity extends AppCompatActivity {
         fragmentManager.beginTransaction()
                 .add(R.id.ingredients_fragment, ingredientsFragment)
                 .commit();
-
-        ingredientsFragment.setIngredientsList(mRecipes.get(headIndex).getIngredients());
 
 
     }
