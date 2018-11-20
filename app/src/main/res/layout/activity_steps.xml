@@ -6,18 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".activity.StepsActivity">
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
+        android:fillViewport="true">
 
-    <FrameLayout
-        android:id="@+id/f_step_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></FrameLayout>
-
-
-
-    <FrameLayout
-        android:id="@+id/f_step_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></FrameLayout>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
+            <FrameLayout
+                android:id="@+id/f_step_video"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin" />
+
+
+            <FrameLayout
+                android:id="@+id/f_step_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                app:layout_constraintTop_toBottomOf="@+id/f_step_video" />
+
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rewind"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/f_step_description"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forward"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_back" />
+
+
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

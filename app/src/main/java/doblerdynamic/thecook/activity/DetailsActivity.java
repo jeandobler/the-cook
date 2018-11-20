@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.List;
 
@@ -65,8 +66,8 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
     @Override
     public void onClick(int stepPosition) {
         Intent intent = new Intent(this, StepsActivity.class);
-        intent.putExtra("step", stepPosition);
-        intent.putExtra("recipe", recipeViewModel.getOne(this));
+        intent.putExtra("step", stepPosition -1);
+        intent.putExtra("recipe", recipeViewModel.getOne(this).getId());
         startActivity(intent);
     }
 }
