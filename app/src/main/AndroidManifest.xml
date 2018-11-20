@@ -14,12 +14,25 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.StepsActivity"></activity>
+        <activity android:name=".activity.DetailsActivity" >
+            android:parentActivityName=".activity.MainActivity" >
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.MainActivity" />
+
+        </activity>
+        <activity android:name=".activity.StepsActivity">
+            android:parentActivityName=".activity.DetailsActivity" >
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.DetailsActivity" />
+
+        </activity>
     </application>
 
 </manifest>

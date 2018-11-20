@@ -1,6 +1,5 @@
 package doblerdynamic.thecook.activity;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,12 +24,10 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 import doblerdynamic.thecook.R;
-import doblerdynamic.thecook.viewModel.RecipeViewModel;
 
 public class StepsVideoFragment extends Fragment {
 
 
-    RecipeViewModel mRecipeViewModel;
     private String mVideoUrl;
     private SimpleExoPlayer mExoPlayer;
     private SimpleExoPlayerView mPlayerView;
@@ -39,7 +36,6 @@ public class StepsVideoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.fragment_steps_video, container, false);
-        mRecipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 
         if (savedInstanceState == null) {
             Bundle extras = getArguments();

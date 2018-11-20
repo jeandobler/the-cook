@@ -23,11 +23,22 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
 
     public RecipeViewModel recipeViewModel;
     public List<Recipe> mRecipes;
-
+    public int headIndex = -1;
     @BindView(R.id.rv_details_steps)
     RecyclerView mRvSteps;
-
     StepsAdapter mStepsAdapter;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+
+        if (getIntent().getIntExtra("headIndex", -1) != -1) {
+            savedInstanceState.putInt("headIndex", getIntent().getIntExtra("headIndex", -1));
+            headIndex = getIntent().getIntExtra("headIndex", -1);
+
+        }
+        Log.e("Save", String.valueOf(headIndex));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,20 +46,29 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-        int headIndex = getIntent().getIntExtra("headIndex", -1);
+
+        if (savedInstanceState != null) {
+            Log.e("Restore", String.valueOf(savedInstanceState.getInt("headIndex")));
+            if (getIntent().getIntExtra("headIndex", -1) == -1) {
+                headIndex = savedInstanceState.getInt("headIndex");
+            } else {
+                headIndex = getIntent().getIntExtra("headIndex", -1);
+            }
+        }
         recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
 
+        if (headIndex == -1) {
+            headIndex = getIntent().getIntExtra("headIndex", -1);
+            Log.e("INdexDetail", String.valueOf(headIndex));
+        }
         setupRecycleView(savedInstanceState);
 
-        if (headIndex == -1) {
-            ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this).getIngredients());
-            mStepsAdapter.setStepData(recipeViewModel.getOne(this).getSteps());
-        } else {
-            ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this, headIndex).getIngredients());
-            mStepsAdapter.setStepData(recipeViewModel.getOne(this, headIndex).getSteps());
-        }
+        ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this, headIndex).getIngredients());
+        mStepsAdapter.setStepData(recipeViewModel.getOne(this, headIndex).getSteps());
+
+        setTitle(recipeViewModel.getOne(this).getName());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.ingredients_fragment, ingredientsFragment)
@@ -66,8 +86,8 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
     @Override
     public void onClick(int stepPosition) {
         Intent intent = new Intent(this, StepsActivity.class);
-        intent.putExtra("step", stepPosition -1);
-        intent.putExtra("recipe", recipeViewModel.getOne(this).getId());
+        intent.putExtra("step", stepPosition);
+        intent.putExtra("recipe", recipeViewModel.getOne(this).getId() - 1);
         startActivity(intent);
     }
 }

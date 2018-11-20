@@ -2,10 +2,12 @@ package doblerdynamic.thecook.activity;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -49,46 +51,74 @@ public class StepsActivity extends AppCompatActivity {
         mRecipe = mRecipeViewModel.getRecipe();
         mSteps = mRecipe.getSteps();
 
+        setTitle(mRecipe.getName());
         if (getIntent().hasExtra("step")) {
             int stepPosition = getIntent().getIntExtra("step", 1);
             mRecipeViewModel.setStepPosition(stepPosition);
         }
 
-        setFragments(-1);
+        setFragments();
 
         final Context mContext = this;
         mBtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSteps.size() > stepPosition + 1) {
-                    stepPosition += 1;
+                if (mSteps.size() > mRecipeViewModel.getStepPosition() + 1) {
+                    mRecipeViewModel.setStepPosition(mRecipeViewModel.getStepPosition() + 1);
                 } else {
-                    stepPosition = 0;
+                    mRecipeViewModel.setStepPosition(0);
                 }
-                ((StepsActivity) mContext).setFragments(stepPosition);
+                ((StepsActivity) mContext).setFragments();
             }
         });
         mBtBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mSteps.size() !=0) {
-                    stepPosition -= 1;
+                if (mRecipeViewModel.getStepPosition() != 0) {
+                    mRecipeViewModel.setStepPosition(mRecipeViewModel.getStepPosition() - 1);
                 } else {
-                    stepPosition = mSteps.size()-1;
+                    mRecipeViewModel.setStepPosition(mSteps.size() - 1);
                 }
-                ((StepsActivity) mContext).setFragments(stepPosition);
+                ((StepsActivity) mContext).setFragments();
             }
         });
 
+
     }
 
-    void setFragments(int head) {
 
-        if (head == -1) {
-            mStep = mSteps.get(mRecipeViewModel.getStepPosition());
-        } else {
-            mStep = mSteps.get(head);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.backAction();
+    }
+
+    private void backAction() {
+        Log.e("RecipeIndex", String.valueOf(getIntent().getIntExtra("recipe", -1)));
+
+        Intent detailsIntent = new Intent(this, DetailsActivity.class);
+        detailsIntent.putExtra("headIndex", getIntent().getIntExtra("recipe", -1));
+        startActivity(detailsIntent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.backAction();
+                break;
         }
+        return true;
+    }
+
+    void setFragments() {
+
+//        if (head == -1) {
+        Log.i("STEPPOSITIONagment", String.valueOf(mRecipeViewModel.getStepPosition()));
+        mStep = mSteps.get(mRecipeViewModel.getStepPosition());
+//        } else {
+//            mStep = mSteps.get(head);
+//        }
 
         FragmentManager fragmentManager = getSupportFragmentManager();
 

@@ -30,7 +30,6 @@ public class StepsDescriptionFragment extends Fragment {
             byte[] data = mDescription.getBytes();
             String text = new String(data, "UTF-8");
             this.mDescription = new String(mDescription.getBytes("ISO-8859-1"));
-//            mRecipeViewModel.setStepDescription(this.mDescription);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
