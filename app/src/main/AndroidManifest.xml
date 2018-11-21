@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="doblerdynamic.thecook">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,16 +16,16 @@
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.DetailsActivity" >
+        <activity android:name=".activity.DetailsActivity">
             android:parentActivityName=".activity.MainActivity" >
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity" />
-
         </activity>
         <activity android:name=".activity.StepsActivity">
             android:parentActivityName=".activity.DetailsActivity" >
@@ -31,8 +33,21 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.DetailsActivity" />
-
         </activity>
+
+        <receiver android:name=".widget.RecipeWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_widget_info" />
+        </receiver>
+
+        <service
+            android:name=".service.WidgetIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

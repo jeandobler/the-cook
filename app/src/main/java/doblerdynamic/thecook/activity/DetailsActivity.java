@@ -16,6 +16,7 @@ import butterknife.ButterKnife;
 import doblerdynamic.thecook.R;
 import doblerdynamic.thecook.adapter.StepsAdapter;
 import doblerdynamic.thecook.model.Recipe;
+import doblerdynamic.thecook.service.WidgetIntentService;
 import doblerdynamic.thecook.viewModel.RecipeViewModel;
 
 public class DetailsActivity extends AppCompatActivity implements StepsAdapter.StepAdapterOnClickHandler {
@@ -61,8 +62,9 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
 
         if (headIndex == -1) {
             headIndex = getIntent().getIntExtra("headIndex", -1);
-            Log.e("INdexDetail", String.valueOf(headIndex));
         }
+
+        WidgetIntentService.updateWidget(this, headIndex);
         setupRecycleView(savedInstanceState);
 
         ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this, headIndex).getIngredients());
