@@ -1,6 +1,8 @@
 package doblerdynamic.thecook.activity;
 
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -16,8 +18,8 @@ import butterknife.ButterKnife;
 import doblerdynamic.thecook.R;
 import doblerdynamic.thecook.adapter.StepsAdapter;
 import doblerdynamic.thecook.model.Recipe;
-import doblerdynamic.thecook.service.WidgetIntentService;
 import doblerdynamic.thecook.viewModel.RecipeViewModel;
+import doblerdynamic.thecook.widget.RecipeWidget;
 
 public class DetailsActivity extends AppCompatActivity implements StepsAdapter.StepAdapterOnClickHandler {
 
@@ -64,7 +66,12 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
             headIndex = getIntent().getIntExtra("headIndex", -1);
         }
 
-        WidgetIntentService.updateWidget(this, headIndex);
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeWidget.class));
+//        RecipeWidget.onUpdateRecipe(this, headIndex);
+        RecipeWidget.onUpdateRecipe(this, appWidgetManager, appWidgetIds, headIndex, recipeViewModel.getOne(this, headIndex).getIngredients());
+
         setupRecycleView(savedInstanceState);
 
         ingredientsFragment.setIngredientsList(recipeViewModel.getOne(this, headIndex).getIngredients());
