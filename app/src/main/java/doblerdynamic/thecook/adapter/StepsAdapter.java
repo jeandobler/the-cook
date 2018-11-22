@@ -17,7 +17,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
 
     private List<Step> mDataset;
 
-
     public StepsAdapter(StepAdapterOnClickHandler clickHandler) {
         mClickHandler = clickHandler;
     }
@@ -32,7 +31,6 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepViewHold
 
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.rv_list_steps, parent, false);
-
 
         StepViewHolder vh = new StepViewHolder(v);
         return vh;

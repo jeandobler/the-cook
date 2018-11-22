@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     public void onClick(int recipePosition) {
 
         final Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("headIndex", recipePosition);
+        intent.putExtra(getString(R.string.recipeIndex), recipePosition);
         startActivity(intent);
 
     }

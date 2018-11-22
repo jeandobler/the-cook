@@ -14,45 +14,31 @@ import doblerdynamic.thecook.activity.DetailsActivity;
 import doblerdynamic.thecook.model.Ingredient;
 
 
-/**
- * Implementation of App Widget functionality.
- */
-public class RecipeWidget extends AppWidgetProvider {
-
-//    static int head = -1;
-//    static String text = "";
+public class RecipeWidgetProvider extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, int head, List<Ingredient> ingredientList) {
 
-
-        AppWidgetManager mgr = AppWidgetManager.getInstance(context);
-
-        // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_widget);
-
 
         if (head != -1) {
             Intent intent = new Intent(context, DetailsActivity.class);
-            intent.putExtra("headIndex", head);
+            intent.putExtra(context.getString(R.string.recipeIndex), head);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
-            String text = "Ingredients:";
+            String text = context.getString(R.string.ingredientsLabel);
             text += "\n";
             for (int count = 0; ingredientList.size() > count; count++) {
-                text += String.valueOf(count+1);
-                text += ": " +ingredientList.get(count).getIngredient();
-                text += " " +ingredientList.get(count).getQuantity();
-                text += " " +ingredientList.get(count).getMeasure();
+                text += String.valueOf(count + 1);
+                text += ": " + ingredientList.get(count).getIngredient();
+                text += " " + ingredientList.get(count).getQuantity();
+                text += " " + ingredientList.get(count).getMeasure();
                 text += "\n";
-
-
             }
 
             views.setTextViewText(R.id.tv_recipe_ingredients, text);
             views.setOnClickPendingIntent(R.id.tv_recipe_ingredients, pendingIntent);
         }
-        // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
     }
 

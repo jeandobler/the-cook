@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.DetailsActivity">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -17,18 +16,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
             <TextView
                 android:id="@+id/tv_title_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Ingredients:"
+                android:layout_marginStart="@dimen/activity_constrain_margin"
+                android:layout_marginLeft="@dimen/activity_constrain_margin"
+                android:layout_marginTop="@dimen/activity_constrain_margin"
+                android:text="@string/ingredientsLabel"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="25sp"
+                android:textSize="@dimen/bigText"
                 app:layout_constraintBottom_toTopOf="@+id/ingredients_fragment"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,8 +35,8 @@
                 android:id="@+id/ingredients_fragment"
                 android:name="doblerdynamic.thecook.activity.IngredientsFragment"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="@dimen/fragment_ingredients_height"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_ingredients" />
 
 
@@ -47,26 +44,21 @@
                 android:id="@+id/tv_how_to_make"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:text="How to make:"
-                app:layout_constraintTop_toBottomOf="@+id/ingredients_fragment"
+                android:layout_marginStart="@dimen/activity_constrain_margin"
+                android:layout_marginLeft="@dimen/activity_constrain_margin"
+                android:layout_marginTop="@dimen/activity_constrain_margin"
+                android:text="@string/how_to_make"
                 android:textColor="@color/colorPrimaryDark"
-                android:textSize="25sp"
-              />
-
+                android:textSize="@dimen/bigText"
+                app:layout_constraintTop_toBottomOf="@+id/ingredients_fragment" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_details_steps"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="@dimen/rv_height"
                 app:layout_constraintTop_toBottomOf="@+id/tv_how_to_make" />
 
-
         </android.support.constraint.ConstraintLayout>
-
-
 
     </ScrollView>
 

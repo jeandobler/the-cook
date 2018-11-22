@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import java.util.List;
 
@@ -19,29 +18,17 @@ import doblerdynamic.thecook.R;
 import doblerdynamic.thecook.adapter.StepsAdapter;
 import doblerdynamic.thecook.model.Recipe;
 import doblerdynamic.thecook.viewModel.RecipeViewModel;
-import doblerdynamic.thecook.widget.RecipeWidget;
+import doblerdynamic.thecook.widget.RecipeWidgetProvider;
 
 public class DetailsActivity extends AppCompatActivity implements StepsAdapter.StepAdapterOnClickHandler {
 
 
-    public RecipeViewModel recipeViewModel;
-    public List<Recipe> mRecipes;
-    public int headIndex = -1;
     @BindView(R.id.rv_details_steps)
     RecyclerView mRvSteps;
     StepsAdapter mStepsAdapter;
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-
-        if (getIntent().getIntExtra("headIndex", -1) != -1) {
-            savedInstanceState.putInt("headIndex", getIntent().getIntExtra("headIndex", -1));
-            headIndex = getIntent().getIntExtra("headIndex", -1);
-
-        }
-        Log.e("Save", String.valueOf(headIndex));
-    }
+    private RecipeViewModel recipeViewModel;
+    private List<Recipe> mRecipes;
+    private int headIndex = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,28 +36,19 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
-
-        if (savedInstanceState != null) {
-            Log.e("Restore", String.valueOf(savedInstanceState.getInt("headIndex")));
-            if (getIntent().getIntExtra("headIndex", -1) == -1) {
-                headIndex = savedInstanceState.getInt("headIndex");
-            } else {
-                headIndex = getIntent().getIntExtra("headIndex", -1);
-            }
-        }
         recipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
 
         if (headIndex == -1) {
-            headIndex = getIntent().getIntExtra("headIndex", -1);
+            headIndex = getIntent().getIntExtra(getString(R.string.recipeIndex), -1);
         }
 
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeWidget.class));
-//        RecipeWidget.onUpdateRecipe(this, headIndex);
-        RecipeWidget.onUpdateRecipe(this, appWidgetManager, appWidgetIds, headIndex, recipeViewModel.getOne(this, headIndex).getIngredients());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeWidgetProvider.class));
+//        RecipeWidgetProvider.onUpdateRecipe(this, headIndex);
+        RecipeWidgetProvider.onUpdateRecipe(this, appWidgetManager, appWidgetIds, headIndex, recipeViewModel.getOne(this, headIndex).getIngredients());
 
         setupRecycleView(savedInstanceState);
 
@@ -95,8 +73,8 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
     @Override
     public void onClick(int stepPosition) {
         Intent intent = new Intent(this, StepsActivity.class);
-        intent.putExtra("step", stepPosition);
-        intent.putExtra("recipe", recipeViewModel.getOne(this).getId() - 1);
+        intent.putExtra(getString(R.string.stepIndex), stepPosition);
+        intent.putExtra(getString(R.string.recipeIndex), recipeViewModel.getOne(this).getId() - 1);
         startActivity(intent);
     }
 }

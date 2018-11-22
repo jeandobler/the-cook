@@ -21,10 +21,6 @@ public class StepsDescriptionFragment extends Fragment {
     private TextView mTvDescription;
     private String mDescription;
 
-
-    public StepsDescriptionFragment() {
-    }
-
     public void setmDescription(String mDescription) {
         try {
             byte[] data = mDescription.getBytes();
@@ -33,9 +29,7 @@ public class StepsDescriptionFragment extends Fragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,7 +41,7 @@ public class StepsDescriptionFragment extends Fragment {
         mTvDescription = rootView.findViewById(R.id.tv_fragment_step_description_text);
         if (savedInstanceState == null) {
             Bundle extras = getArguments();
-            this.setmDescription(extras.getString("description"));
+            this.setmDescription(extras.getString(getString(R.string.step_description)));
         }
 
 

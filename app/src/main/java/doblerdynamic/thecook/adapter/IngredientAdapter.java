@@ -13,13 +13,7 @@ import doblerdynamic.thecook.model.Ingredient;
 
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.IngredientViewHolder> {
 
-
     private List<Ingredient> mDataset;
-
-
-    public IngredientAdapter() {
-
-    }
 
     public void setIngredientData(List<Ingredient> movieData) {
         mDataset = movieData;
@@ -51,13 +45,8 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.In
         return mDataset.size();
     }
 
-    public interface IngredientAdapterOnClickHandler {
-        void onClick(int adapterPosition);
-    }
-
     public class IngredientViewHolder extends RecyclerView.ViewHolder {
         TextView mTvTitle;
-        TextView mTvContent;
         TextView mTvQuantity;
         TextView mTvMeasure;
 

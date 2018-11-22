@@ -27,7 +27,6 @@ import doblerdynamic.thecook.R;
 
 public class StepsVideoFragment extends Fragment {
 
-
     private String mVideoUrl;
     private SimpleExoPlayer mExoPlayer;
     private SimpleExoPlayerView mPlayerView;
@@ -39,7 +38,7 @@ public class StepsVideoFragment extends Fragment {
 
         if (savedInstanceState == null) {
             Bundle extras = getArguments();
-            this.setVideoUrl(extras.getString("videoUrl"));
+            this.setVideoUrl(extras.getString(getString(R.string.step_videoUrl)));
         }
 
         return rootView;
@@ -53,11 +52,8 @@ public class StepsVideoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mPlayerView = (SimpleExoPlayerView) view.findViewById(R.id.playerView);
-
         initializePlayer(view.getContext());
-
     }
 
     private void initializePlayer(Context context) {
@@ -71,11 +67,7 @@ public class StepsVideoFragment extends Fragment {
                 mExoPlayer = ExoPlayerFactory.newSimpleInstance(context, trackSelector, loadControl);
                 mPlayerView.setPlayer(mExoPlayer);
 
-                // Set the ExoPlayer.EventListener to this activity.
-//            mExoPlayer.addListener(context);
-
-                // Prepare the MediaSource.
-                String userAgent = Util.getUserAgent(context, "ClassicalMusicQuiz");
+                String userAgent = Util.getUserAgent(context, getString(R.string.videoLabel));
                 MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(
                         context, userAgent), new DefaultExtractorsFactory(), null, null);
                 mExoPlayer.prepare(mediaSource);
@@ -91,5 +83,13 @@ public class StepsVideoFragment extends Fragment {
             mExoPlayer.stop();
         }
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mExoPlayer != null) {
+            mExoPlayer.stop();
+        }
     }
 }

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,17 +21,15 @@ import doblerdynamic.thecook.viewModel.RecipeViewModel;
 
 public class StepsActivity extends AppCompatActivity {
 
-    RecipeViewModel mRecipeViewModel;
-    Recipe mRecipe;
-    List<Step> mSteps;
-    Step mStep;
-    int stepPosition;
-
     @BindView(R.id.btn_next)
     Button mBtNext;
     @BindView(R.id.btn_back)
     Button mBtBack;
-
+    private RecipeViewModel mRecipeViewModel;
+    private Recipe mRecipe;
+    private List<Step> mSteps;
+    private Step mStep;
+    private int stepPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +40,8 @@ public class StepsActivity extends AppCompatActivity {
 
         mRecipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 
-        if (getIntent().hasExtra("recipe")) {
-            int recipePosition = getIntent().getIntExtra("recipe", 0);
+        if (getIntent().hasExtra(getString(R.string.recipeIndex))) {
+            int recipePosition = getIntent().getIntExtra(getString(R.string.recipeIndex), 0);
             mRecipeViewModel.setRecipe(mRecipeViewModel.getOne(this, recipePosition));
         }
 
@@ -52,8 +49,8 @@ public class StepsActivity extends AppCompatActivity {
         mSteps = mRecipe.getSteps();
 
         setTitle(mRecipe.getName());
-        if (getIntent().hasExtra("step")) {
-            int stepPosition = getIntent().getIntExtra("step", 1);
+        if (getIntent().hasExtra(getString(R.string.stepIndex))) {
+            int stepPosition = getIntent().getIntExtra(getString(R.string.stepIndex), 1);
             mRecipeViewModel.setStepPosition(stepPosition);
         }
 
@@ -94,10 +91,9 @@ public class StepsActivity extends AppCompatActivity {
     }
 
     private void backAction() {
-        Log.e("RecipeIndex", String.valueOf(getIntent().getIntExtra("recipe", -1)));
 
         Intent detailsIntent = new Intent(this, DetailsActivity.class);
-        detailsIntent.putExtra("headIndex", getIntent().getIntExtra("recipe", -1));
+        detailsIntent.putExtra(getString(R.string.recipeIndex), getIntent().getIntExtra(getString(R.string.recipeIndex), -1));
         startActivity(detailsIntent);
     }
 
@@ -111,25 +107,18 @@ public class StepsActivity extends AppCompatActivity {
         return true;
     }
 
-    void setFragments() {
+    private void setFragments() {
 
-//        if (head == -1) {
-        Log.i("STEPPOSITIONagment", String.valueOf(mRecipeViewModel.getStepPosition()));
         mStep = mSteps.get(mRecipeViewModel.getStepPosition());
-//        } else {
-//            mStep = mSteps.get(head);
-//        }
-
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         StepsDescriptionFragment stepsDescriptionFragment = new StepsDescriptionFragment();
         StepsVideoFragment stepsVideoFragment = new StepsVideoFragment();
 
-//        stepsDescriptionFragment.setmDescription(mStep.getDescription());
         stepsDescriptionFragment.setRetainInstance(false);
         Bundle bundle = new Bundle();
-        bundle.putString("description", mStep.getDescription());
-        bundle.putString("videoUrl", mStep.getVideoURL());
+        bundle.putString(getString(R.string.step_description), mStep.getDescription());
+        bundle.putString(getString(R.string.step_videoUrl), mStep.getVideoURL());
         stepsDescriptionFragment.setArguments(bundle);
         stepsVideoFragment.setArguments(bundle);
         fragmentManager.beginTransaction()

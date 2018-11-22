@@ -3,6 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="recipeIndex">recipeIndex</string>
+    <string name="stepIndex">stepIndex</string>
+    <string name="step_description">step_description</string>
+    <string name="step_videoUrl">step_videoUrl</string>
+    <string name="videoLabel">Recipe Video</string>
+    <string name="ingredientsLabel">Ingredients:</string>
 
 
     <string name="back"><![CDATA[<]]></string>
@@ -11,5 +17,6 @@
     <string name="pause">||</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="how_to_make">How to make:</string>
 
 </resources>
