@@ -9,7 +9,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/activity_constrain_margin"
 
         android:fillViewport="true">
 
@@ -22,12 +22,12 @@
             <FrameLayout
                 android:id="@+id/f_step_video"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_height="@dimen/rv_height"
+                android:layout_marginStart="@dimen/activity_constrain_margin"
+                android:layout_marginLeft="@dimen/activity_constrain_margin"
+                android:layout_marginTop="@dimen/activity_constrain_margin"
+                android:layout_marginEnd="@dimen/activity_constrain_margin"
+                android:layout_marginRight="@dimen/activity_constrain_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -36,13 +36,13 @@
                 android:id="@+id/f_step_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginStart="@dimen/activity_constrain_margin"
+                android:layout_marginLeft="@dimen/activity_constrain_margin"
+                android:layout_marginEnd="@dimen/activity_constrain_margin"
+                android:layout_marginRight="@dimen/activity_constrain_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
                 app:layout_constraintTop_toBottomOf="@+id/f_step_video" />
 
 
@@ -50,8 +50,8 @@
                 android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="@dimen/activity_constrain_margin"
+                android:layout_marginLeft="@dimen/activity_constrain_margin"
                 android:text="@string/rewind"
 
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -61,12 +61,11 @@
                 android:id="@+id/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="@dimen/activity_constrain_margin"
+                android:layout_marginRight="@dimen/activity_constrain_margin"
                 android:text="@string/forward"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/btn_back" />
-
 
 
         </android.support.constraint.ConstraintLayout>

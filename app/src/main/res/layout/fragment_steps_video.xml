@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="81dp"
-    >
+    tools:layout_editor_absoluteY="81dp">
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/playerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_width="@dimen/exoplayer_dmin"
+        android:layout_height="@dimen/exoplayer_dmin"
+        android:layout_marginLeft="@dimen/exoplayer_dmin"
+        android:layout_marginTop="@dimen/exoplayer_dmin"
+        android:layout_marginRight="@dimen/exoplayer_dmin"
+        android:layout_marginBottom="@dimen/exoplayer_dmin"
         app:layout_constraintBottom_toTopOf="@+id/horizontalHalf"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -27,9 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="256dp"
-        app:layout_constraintGuide_percent="0.95" />
-
+        app:layout_constraintGuide_percent="0.95"
+        tools:layout_editor_absoluteX="@dimen/exoplayer_dmin"
+        tools:layout_editor_absoluteY="@dimen/exoplayer_guidelineY" />
 
 </android.support.constraint.ConstraintLayout>

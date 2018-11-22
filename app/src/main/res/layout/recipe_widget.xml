@@ -10,12 +10,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_margin="8dp"
-            android:background="#09C"
-            android:contentDescription="@string/appwidget_text"
+            android:layout_margin="@dimen/activity_constrain_margin"
+            android:background="@color/colorPrimaryRead"
             android:text="@string/appwidget_text"
             android:textColor="#ffffff"
-            android:textSize="12sp"
+            android:textSize="@dimen/smallText"
             android:textStyle="bold|italic" />
 
 
