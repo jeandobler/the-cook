@@ -12,10 +12,8 @@
             android:layout_centerVertical="true"
             android:layout_margin="@dimen/activity_constrain_margin"
             android:background="@color/colorPrimaryRead"
-            android:text="@string/appwidget_text"
             android:textColor="#ffffff"
             android:textSize="@dimen/smallText"
             android:textStyle="bold|italic" />
-
 
 </RelativeLayout>

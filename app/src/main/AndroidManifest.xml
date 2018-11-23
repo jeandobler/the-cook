@@ -45,9 +45,6 @@
                 android:resource="@xml/recipe_widget_info" />
         </receiver>
 
-        <service
-            android:name=".service.WidgetIntentService"
-            android:exported="false"></service>
     </application>
 
 </manifest>

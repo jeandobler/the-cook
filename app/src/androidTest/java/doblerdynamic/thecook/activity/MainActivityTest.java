@@ -28,6 +28,7 @@ public class MainActivityTest {
         onView(withId(R.id.rv_main_recipe))
                 .perform(RecyclerViewActions.actionOnItem(
                         hasDescendant(withText(R.string.testNutellaPie)), click()));
+
         onView(withId(R.id.tv_title_ingredients)).check(matches(withText(R.string.ingredientsLabel)));
 
     }

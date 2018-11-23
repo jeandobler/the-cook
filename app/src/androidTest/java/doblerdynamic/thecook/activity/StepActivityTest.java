@@ -1,6 +1,5 @@
 package doblerdynamic.thecook.activity;
 
-import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 
 import org.junit.Rule;
@@ -14,32 +13,27 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-public class DetailsActivityTest {
+public class StepActivityTest {
 
 
     @Rule
-    public ActivityTestRule<DetailsActivity> mActivityTestRule =
-            new ActivityTestRule<>(DetailsActivity.class);
+    public ActivityTestRule<StepsActivity> mActivityTestRule =
+            new ActivityTestRule<>(StepsActivity.class);
 
     @Test
-    public void clickOnListAndOpenStepsIntent() {
+    public void clickOnBackAndForward() {
 
-        onView(withId(R.id.rv_details_steps))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(withId(R.id.btn_back))
+                .perform(click());
 
         onView(withId(R.id.tv_fragment_step_description_label))
                 .check(matches(withText(R.string.description)));
 
-    }
-
-    @Test
-    public void clickBack() {
-
-        onView(withId(android.R.id.home))
+        onView(withId(R.id.btn_next))
                 .perform(click());
 
-        onView(withId(R.id.tv_recipe_title))
-                .check(matches(withText(R.string.testNutellaPie)));
+        onView(withId(R.id.tv_fragment_step_description_label))
+                .check(matches(withText(R.string.description)));
 
     }
 }

@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
     StepsAdapter mStepsAdapter;
     private RecipeViewModel recipeViewModel;
     private List<Recipe> mRecipes;
-    private int headIndex = -1;
+    private int headIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,7 @@ public class DetailsActivity extends AppCompatActivity implements StepsAdapter.S
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
 
-        if (headIndex == -1) {
-            headIndex = getIntent().getIntExtra(getString(R.string.recipeIndex), -1);
-        }
+            headIndex = getIntent().getIntExtra(getString(R.string.recipeIndex), 0);
 
 
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);

@@ -40,19 +40,15 @@ public class StepsActivity extends AppCompatActivity {
 
         mRecipeViewModel = ViewModelProviders.of(this).get(RecipeViewModel.class);
 
-        if (getIntent().hasExtra(getString(R.string.recipeIndex))) {
-            int recipePosition = getIntent().getIntExtra(getString(R.string.recipeIndex), 0);
-            mRecipeViewModel.setRecipe(mRecipeViewModel.getOne(this, recipePosition));
-        }
+        int recipePosition = getIntent().getIntExtra(getString(R.string.recipeIndex), 0);
+        mRecipeViewModel.setRecipe(mRecipeViewModel.getOne(this, recipePosition));
 
         mRecipe = mRecipeViewModel.getRecipe();
         mSteps = mRecipe.getSteps();
 
         setTitle(mRecipe.getName());
-        if (getIntent().hasExtra(getString(R.string.stepIndex))) {
-            int stepPosition = getIntent().getIntExtra(getString(R.string.stepIndex), 1);
-            mRecipeViewModel.setStepPosition(stepPosition);
-        }
+        int stepPosition = getIntent().getIntExtra(getString(R.string.stepIndex), 0);
+        mRecipeViewModel.setStepPosition(stepPosition);
 
         setFragments();
 
@@ -93,7 +89,7 @@ public class StepsActivity extends AppCompatActivity {
     private void backAction() {
 
         Intent detailsIntent = new Intent(this, DetailsActivity.class);
-        detailsIntent.putExtra(getString(R.string.recipeIndex), getIntent().getIntExtra(getString(R.string.recipeIndex), -1));
+        detailsIntent.putExtra(getString(R.string.recipeIndex), getIntent().getIntExtra(getString(R.string.recipeIndex), 0));
         startActivity(detailsIntent);
     }
 
