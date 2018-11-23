@@ -19,7 +19,7 @@ import doblerdynamic.thecook.viewModel.RecipeViewModel;
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler {
 
 
-    @BindView(R.id.rc_main_recipe)
+    @BindView(R.id.rv_main_recipe)
     RecyclerView mRvRecipe;
 
     RecipeViewModel recipeViewModel;
